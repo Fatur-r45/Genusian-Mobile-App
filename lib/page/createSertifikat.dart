@@ -57,7 +57,7 @@ class _CreateSertifikatState extends State<CreateSertifikat> {
     });
   }
 
-  void updateImage() async {
+  void uploadImage() async {
     ServiceFile? path = await ServiceFile.uploadFile();
     if (path != null) {
       setState(() {
@@ -251,7 +251,7 @@ class _CreateSertifikatState extends State<CreateSertifikat> {
                                 ),
                               ),
                               onPressed: () {
-                                updateImage();
+                                uploadImage();
                               },
                               child: Text(
                                 'Pilih File',

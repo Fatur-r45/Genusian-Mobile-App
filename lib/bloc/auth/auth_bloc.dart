@@ -56,7 +56,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
         int? nim = pref.getInt("nim");
         String? email = pref.getString("email");
         String? token = pref.getString("token");
-        // print("nim: $nim");
         if (email != null && token != null && nim != null) {
           bool? tokenValid = Services.isTokenValid(token);
           if (tokenValid != false) {
@@ -64,11 +63,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
             if (user != null) {
               emit(UserSignedIn(user));
             }
-          } else {
-            emit(UserSignedOut());
           }
+        } else {
+          emit(UserSignedOut());
         }
-        emit(UserSignedOut());
       } catch (_) {}
     });
   }
