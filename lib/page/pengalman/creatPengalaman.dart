@@ -5,8 +5,8 @@ import 'package:genusian_smart_mobile_app/bloc/pengalaman/pengalaman_state.dart'
 import 'package:genusian_smart_mobile_app/model/pengalaman.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import '../bloc/pengalaman/pengalaman_bloc.dart';
-import '../components/form_input.dart';
+import '../../bloc/pengalaman/pengalaman_bloc.dart';
+import '../../components/form_input.dart';
 
 class CreatePengalaman extends StatefulWidget {
   final PengalamanModel? pengalaman;

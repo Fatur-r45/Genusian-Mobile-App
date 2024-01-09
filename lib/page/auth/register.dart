@@ -5,7 +5,7 @@ import 'package:genusian_smart_mobile_app/bloc/auth/auth_event.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../bloc/auth/auth_bloc.dart';
+import '../../bloc/auth/auth_bloc.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});

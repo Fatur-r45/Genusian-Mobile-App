@@ -44,13 +44,13 @@ class AppbarMenuHome extends StatelessWidget implements PreferredSizeWidget {
                 .add(SearchMahasiswaEvent(nama?.text ?? ""));
           },
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 10),
+            contentPadding: const EdgeInsets.symmetric(vertical: 10),
             hintText: "Pencarian",
-            prefixIcon: Icon(Icons.search),
+            prefixIcon: const Icon(Icons.search),
             filled: true,
             suffixIcon: backButton,
             fillColor: Colors.white,
-            border: OutlineInputBorder(
+            border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(12),
               ),

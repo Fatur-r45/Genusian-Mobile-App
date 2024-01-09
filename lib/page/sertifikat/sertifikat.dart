@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genusian_smart_mobile_app/bloc/sertifikat/sertifikat_event.dart';
@@ -6,9 +7,9 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../bloc/sertifikat/sertifikat_bloc.dart';
-import '../bloc/sertifikat/sertifikat_state.dart';
-import '../helper/capital_words.dart';
+import '../../bloc/sertifikat/sertifikat_bloc.dart';
+import '../../bloc/sertifikat/sertifikat_state.dart';
+import '../../helper/capital_words.dart';
 
 class Sertifikat extends StatelessWidget {
   const Sertifikat({super.key});
@@ -113,9 +114,19 @@ class Sertifikat extends StatelessWidget {
                       ),
                       trailing: IconButton(
                         onPressed: () {
-                          context.read<SertifikatBloc>().add(
-                              DeleteSertifikatEvent(
-                                  state.sertifikat[index].id));
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.warning,
+                            animType: AnimType.scale,
+                            title: 'Delete',
+                            desc: 'apakah kamu yakin ingin',
+                            btnCancelOnPress: () {},
+                            btnOkOnPress: () {
+                              context.read<SertifikatBloc>().add(
+                                  DeleteSertifikatEvent(
+                                      state.sertifikat[index].id));
+                            },
+                          ).show();
                         },
                         icon: const Icon(Icons.delete),
                       ),

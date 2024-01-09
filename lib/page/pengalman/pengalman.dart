@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genusian_smart_mobile_app/bloc/pengalaman/pengalaman_bloc.dart';
@@ -7,8 +8,8 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../bloc/pengalaman/pengalaman_state.dart';
-import '../helper/capital_words.dart';
+import '../../bloc/pengalaman/pengalaman_state.dart';
+import '../../helper/capital_words.dart';
 
 class Pengalaman extends StatelessWidget {
   const Pengalaman({super.key});
@@ -114,9 +115,19 @@ class Pengalaman extends StatelessWidget {
                             ),
                             trailing: IconButton(
                               onPressed: () {
-                                context.read<PengalamanBloc>().add(
-                                    DeletPengalaman(
-                                        state.pengalaman[index].id));
+                                AwesomeDialog(
+                                  context: context,
+                                  dialogType: DialogType.warning,
+                                  animType: AnimType.scale,
+                                  title: 'Delete',
+                                  desc: 'apakah kamu yakin ingin',
+                                  btnCancelOnPress: () {},
+                                  btnOkOnPress: () {
+                                    context.read<PengalamanBloc>().add(
+                                        DeletPengalaman(
+                                            state.pengalaman[index].id));
+                                  },
+                                ).show();
                               },
                               icon: const Icon(Icons.delete),
                             ),

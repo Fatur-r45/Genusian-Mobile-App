@@ -6,7 +6,7 @@ import 'package:genusian_smart_mobile_app/bloc/mahasiswa/mahasiswa_state.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../model/mahasiswa.dart';
+import '../../model/mahasiswa.dart';
 
 class EditProfile extends StatefulWidget {
   final Mahasiswa? mahasiswa;

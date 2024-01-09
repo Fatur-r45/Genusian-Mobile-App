@@ -126,6 +126,7 @@ class PreviewProfile extends StatelessWidget {
 
           // herro section start
 
+          // Main Content
           Container(
             constraints: BoxConstraints(
               minHeight: MediaQuery.of(context).size.height * 3 / 4,
@@ -319,6 +320,7 @@ class PreviewProfile extends StatelessWidget {
               ],
             ),
           )
+          // Main Content end
         ],
       ),
     );

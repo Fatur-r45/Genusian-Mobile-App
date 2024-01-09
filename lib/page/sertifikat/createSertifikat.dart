@@ -1,17 +1,19 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genusian_smart_mobile_app/model/sertitifikat.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import '../bloc/sertifikat/sertifikat_bloc.dart';
-import '../bloc/sertifikat/sertifikat_event.dart';
-import '../bloc/sertifikat/sertifikat_state.dart';
-import '../components/form_input.dart';
-import '../helper/capital_words.dart';
-import '../model/jenis_sertifikat.dart';
-import '../services/jenissertifikat_services.dart';
-import '../services/serviceFile.dart';
+import '../../bloc/sertifikat/sertifikat_bloc.dart';
+import '../../bloc/sertifikat/sertifikat_event.dart';
+import '../../bloc/sertifikat/sertifikat_state.dart';
+import '../../components/form_input.dart';
+import '../../helper/capital_words.dart';
+import '../../model/jenis_sertifikat.dart';
+import '../../services/jenissertifikat_services.dart';
+import '../../services/serviceFile.dart';
 
 class CreateSertifikat extends StatefulWidget {
   final SertifikatModel? sertifikat;
@@ -306,7 +308,7 @@ class _CreateSertifikatState extends State<CreateSertifikat> {
                                 EdgeInsets.symmetric(vertical: 24),
                               ),
                             ),
-                            onPressed: () {
+                            onPressed: () async {
                               if (widget.sertifikat?.id != null) {
                                 context
                                     .read<SertifikatBloc>()
@@ -340,7 +342,16 @@ class _CreateSertifikatState extends State<CreateSertifikat> {
                                       point: kategori?.point.toString() ?? "",
                                     ));
                               }
-                              // context.goNamed("$halaman");
+                              AwesomeDialog(
+                                context: context,
+                                dialogType: DialogType.success,
+                                title: "Success",
+                                desc: "sertifikat berhasil ditambahkan",
+                                animType: AnimType.scale,
+                              ).show();
+                              Future.delayed(Duration(seconds: 2), () {
+                                context.goNamed("sertifikat");
+                              });
                             },
                             child: Text(
                               'simpan',

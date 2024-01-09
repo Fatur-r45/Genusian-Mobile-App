@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:genusian_smart_mobile_app/helper/capital_words.dart';
@@ -6,7 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../bloc/pendidikan/pendidikan_bloc.dart';
+import '../../bloc/pendidikan/pendidikan_bloc.dart';
 
 class Pendidikan extends StatelessWidget {
   const Pendidikan({super.key});
@@ -115,9 +116,19 @@ class Pendidikan extends StatelessWidget {
                       ),
                       trailing: IconButton(
                         onPressed: () {
-                          context.read<PendidikanBloc>().add(
-                              DeletePendidikanEvent(
-                                  state.pendidikan[index].id));
+                          AwesomeDialog(
+                            context: context,
+                            dialogType: DialogType.warning,
+                            animType: AnimType.scale,
+                            title: 'Delete',
+                            desc: 'apakah kamu yakin ingin',
+                            btnCancelOnPress: () {},
+                            btnOkOnPress: () {
+                              context.read<PendidikanBloc>().add(
+                                  DeletePendidikanEvent(
+                                      state.pendidikan[index].id));
+                            },
+                          ).show();
                         },
                         icon: const Icon(Icons.delete),
                       ),

@@ -201,7 +201,7 @@ class Profile extends StatelessWidget {
                                   );
                           }
                           return const Center(
-                            child: Text("No Data"),
+                            child: CircularProgressIndicator(),
                           );
                         },
                       ),
@@ -249,20 +249,27 @@ class Profile extends StatelessWidget {
                           if (state is PendidikanLoadState) {
                             return Column(
                               // mainAxisAlignment: MainAxisAlignment.start,
-                              children: List.generate(
-                                state.pendidikan.length,
-                                (index) => PendidikanItems(
-                                    namaInstansi:
-                                        state.pendidikan[index].namaInstansi,
-                                    bidangStudi:
-                                        state.pendidikan[index].bidangStudi,
-                                    mulai: state.pendidikan[index].mulai,
-                                    sampai: state.pendidikan[index].sampai),
-                              ),
+                              children: state.pendidikan.isNotEmpty
+                                  ? List.generate(
+                                      state.pendidikan.length,
+                                      (index) => PendidikanItems(
+                                          namaInstansi: state
+                                              .pendidikan[index].namaInstansi,
+                                          bidangStudi: state
+                                              .pendidikan[index].bidangStudi,
+                                          mulai: state.pendidikan[index].mulai,
+                                          sampai:
+                                              state.pendidikan[index].sampai),
+                                    )
+                                  : [
+                                      const Center(
+                                        child: Text("No Data"),
+                                      )
+                                    ],
                             );
                           }
                           return const Center(
-                            child: Text("No Data"),
+                            child: CircularProgressIndicator(),
                           );
                         },
                       ),
@@ -309,19 +316,25 @@ class Profile extends StatelessWidget {
                         builder: (context, state) {
                           if (state is SertifikatLoadstate) {
                             return Column(
-                              children: List.generate(
-                                state.sertifikat.length,
-                                (index) => SertifikatItems(
-                                    title: state.sertifikat[index].title,
-                                    keterangan:
-                                        state.sertifikat[index].keterangan,
-                                    tanggalDapat:
-                                        state.sertifikat[index].tanggalDapat),
-                              ),
+                              children: state.sertifikat.isNotEmpty
+                                  ? List.generate(
+                                      state.sertifikat.length,
+                                      (index) => SertifikatItems(
+                                          title: state.sertifikat[index].title,
+                                          keterangan: state
+                                              .sertifikat[index].keterangan,
+                                          tanggalDapat: state
+                                              .sertifikat[index].tanggalDapat),
+                                    )
+                                  : [
+                                      const Center(
+                                        child: Text("No Data"),
+                                      )
+                                    ],
                             );
                           }
                           return const Center(
-                            child: Text("No Data"),
+                            child: CircularProgressIndicator(),
                           );
                         },
                       )

@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
-import '../bloc/pendidikan/pendidikan_bloc.dart';
-import '../components/form_input.dart';
-import '../model/pendidikan_model.dart';
+import '../../bloc/pendidikan/pendidikan_bloc.dart';
+import '../../components/form_input.dart';
+import '../../model/pendidikan_model.dart';
 
 class CreatePendidikan extends StatefulWidget {
   final PendidikanModel? pendidikan;

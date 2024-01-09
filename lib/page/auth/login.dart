@@ -7,7 +7,7 @@ import 'package:genusian_smart_mobile_app/cubit/bool.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../bloc/auth/auth_state.dart';
+import '../../bloc/auth/auth_state.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
