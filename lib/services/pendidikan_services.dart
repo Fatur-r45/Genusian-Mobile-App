@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:genusian_smart_mobile_app/url/base_url.dart';
 
 import '../model/pendidikan_model.dart';
 
@@ -6,7 +7,7 @@ class PendidikanServices {
   static Future<List<PendidikanModel>?> getAllPendidikan(int nim) async {
     List<PendidikanModel> pendidikan = [];
     try {
-      var response = await Dio().get("http://localhost:5000/pendidikan/${nim}");
+      var response = await Dio().get("${BaseUrl.url}/pendidikan/${nim}");
       List data = ((response.data) as Map<String, dynamic>)["data"];
       for (var data in data) {
         pendidikan.add(PendidikanModel(
@@ -32,8 +33,7 @@ class PendidikanServices {
     required String sampai,
   }) async {
     try {
-      var response =
-          await Dio().post("http://localhost:5000/pendidikan/$nim", data: {
+      var response = await Dio().post("${BaseUrl.url}/pendidikan/$nim", data: {
         "nama_instansi": namaInstansi,
         "gelar": gelar,
         "bidang_studi": bidangStudi,
@@ -55,8 +55,7 @@ class PendidikanServices {
     required String sampai,
   }) async {
     try {
-      var response =
-          await Dio().put("http://localhost:5000/pendidikan/$id", data: {
+      var response = await Dio().put("${BaseUrl.url}/pendidikan/$id", data: {
         "nama_instansi": namaInstansi,
         "gelar": gelar,
         "bidang_studi": bidangStudi,
@@ -74,7 +73,7 @@ class PendidikanServices {
 
   static Future<void> deletPendidikan(int id) async {
     try {
-      await Dio().delete("http://localhost:5000/pendidikan/$id");
+      await Dio().delete("${BaseUrl.url}/pendidikan/$id");
     } catch (_) {}
   }
 }

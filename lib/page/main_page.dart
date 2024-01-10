@@ -6,7 +6,30 @@ import 'package:genusian_smart_mobile_app/cubit/incermentBottomNav.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:genusian_smart_mobile_app/page/main_pages/main_pages.dart';
 
-class MainPage extends StatelessWidget {
+import '../bloc/mahasiswa/mahasiswa_bloc.dart';
+import '../bloc/mahasiswa/mahasiswa_event.dart';
+import '../bloc/pendidikan/pendidikan_bloc.dart';
+import '../bloc/pengalaman/pengalaman_bloc.dart';
+import '../bloc/pengalaman/pengalaman_event.dart';
+import '../bloc/sertifikat/sertifikat_bloc.dart';
+import '../bloc/sertifikat/sertifikat_event.dart';
+
+class MainPage extends StatefulWidget {
+  MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  void initState() {
+    super.initState();
+    context.read<MahasiswaBloc>().add(LoadMahasiswa());
+    context.read<PengalamanBloc>().add(LoadPengalaman());
+    context.read<SertifikatBloc>().add(LoadSertifikatEvent());
+    context.read<PendidikanBloc>().add(LoadPendidikanEvent());
+  }
+
   final List<Widget> mainPage = [
     const Home(),
     const Leaderboard(),
@@ -30,8 +53,6 @@ class MainPage extends StatelessWidget {
     ),
     const AppbarMenuProfile(),
   ];
-
-  MainPage({super.key});
 
   @override
   Widget build(BuildContext context) {

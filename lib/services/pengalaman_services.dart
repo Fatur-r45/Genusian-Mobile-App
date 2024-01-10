@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:genusian_smart_mobile_app/url/base_url.dart';
 
 import '../model/pengalaman.dart';
 
@@ -6,7 +7,7 @@ class PengalamanServices {
   static Future<List<PengalamanModel>?> getAllPengalaman(int nim) async {
     List<PengalamanModel> pengalaman = [];
     try {
-      var response = await Dio().get("http://localhost:5000/pengalaman/${nim}");
+      var response = await Dio().get("${BaseUrl.url}/pengalaman/${nim}");
       List data = ((response.data) as Map<String, dynamic>)["data"];
       for (var data in data) {
         pengalaman.add(PengalamanModel(
@@ -33,7 +34,7 @@ class PengalamanServices {
       String mulai,
       String sampai) async {
     try {
-      await Dio().post("http://localhost:5000/pengalaman/$nim", data: {
+      await Dio().post("${BaseUrl.url}/pengalaman/$nim", data: {
         "posisi_pekerjaan": posisiPekerjaan,
         "jenis_pekerjaan": jenisPekerjaan,
         "nama_perusahaan": namaPerusahaan,
@@ -51,7 +52,7 @@ class PengalamanServices {
       String mulai,
       String sampai) async {
     try {
-      await Dio().put("http://localhost:5000/pengalaman/$id", data: {
+      await Dio().put("${BaseUrl.url}/pengalaman/$id", data: {
         "posisi_pekerjaan": posisiPekerjaan,
         "jenis_pekerjaan": jenisPekerjaan,
         "nama_perusahaan": namaPerusahaan,
@@ -65,7 +66,7 @@ class PengalamanServices {
 
   static Future<void> deletPengalaman(int id) async {
     try {
-      await Dio().delete("http://localhost:5000/pengalaman/${id}");
+      await Dio().delete("${BaseUrl.url}/pengalaman/${id}");
     } catch (_) {}
   }
 }

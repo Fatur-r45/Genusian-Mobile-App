@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:genusian_smart_mobile_app/url/base_url.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,7 +33,7 @@ abstract class Services {
       {required String email, required String password}) async {
     try {
       var response = await Dio().post(
-        "http://localhost:5000/login",
+        "${BaseUrl.url}/login",
         data: {
           "email": email,
           "password": password,
@@ -54,7 +55,7 @@ abstract class Services {
 
   static Future<void> logout(String token) async {
     try {
-      await Dio().delete("http://localhost:5000/logout", data: {
+      await Dio().delete("${BaseUrl.url}/logout", data: {
         "token": token,
       });
     } on DioException catch (e) {
@@ -69,15 +70,15 @@ abstract class Services {
       required String password,
       required String confPassword}) async {
     try {
-      var response = await Dio().post("http://localhost:5000/users", data: {
+      var response = await Dio().post("${BaseUrl.url}/users", data: {
         "user_name": name,
         "nim": nim,
         "email": email,
         "password": password,
         "confPassword": confPassword,
       });
-      await Dio().post("http://localhost:5000/mahasiswa",
-          data: {"nim": nim, "point": 0});
+      await Dio()
+          .post("${BaseUrl.url}/mahasiswa", data: {"nim": nim, "point": 0});
       print(response.data);
     } on DioException catch (error) {
       print(error.response);

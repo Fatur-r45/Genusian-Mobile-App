@@ -247,10 +247,10 @@ class Profile extends StatelessWidget {
                       BlocBuilder<PendidikanBloc, PendidikanState>(
                         builder: (context, state) {
                           if (state is PendidikanLoadState) {
-                            return Column(
-                              // mainAxisAlignment: MainAxisAlignment.start,
-                              children: state.pendidikan.isNotEmpty
-                                  ? List.generate(
+                            return state.pendidikan.isNotEmpty
+                                ? Column(
+                                    // mainAxisAlignment: MainAxisAlignment.start,
+                                    children: List.generate(
                                       state.pendidikan.length,
                                       (index) => PendidikanItems(
                                           namaInstansi: state
@@ -260,13 +260,11 @@ class Profile extends StatelessWidget {
                                           mulai: state.pendidikan[index].mulai,
                                           sampai:
                                               state.pendidikan[index].sampai),
-                                    )
-                                  : [
-                                      const Center(
-                                        child: Text("No Data"),
-                                      )
-                                    ],
-                            );
+                                    ),
+                                  )
+                                : const Center(
+                                    child: Text("No Data"),
+                                  );
                           }
                           return const Center(
                             child: CircularProgressIndicator(),
@@ -315,9 +313,9 @@ class Profile extends StatelessWidget {
                       BlocBuilder<SertifikatBloc, SertifikatState>(
                         builder: (context, state) {
                           if (state is SertifikatLoadstate) {
-                            return Column(
-                              children: state.sertifikat.isNotEmpty
-                                  ? List.generate(
+                            return state.sertifikat.isNotEmpty
+                                ? Column(
+                                    children: List.generate(
                                       state.sertifikat.length,
                                       (index) => SertifikatItems(
                                           title: state.sertifikat[index].title,
@@ -325,13 +323,11 @@ class Profile extends StatelessWidget {
                                               .sertifikat[index].keterangan,
                                           tanggalDapat: state
                                               .sertifikat[index].tanggalDapat),
-                                    )
-                                  : [
-                                      const Center(
-                                        child: Text("No Data"),
-                                      )
-                                    ],
-                            );
+                                    ),
+                                  )
+                                : const Center(
+                                    child: Text("No Data"),
+                                  );
                           }
                           return const Center(
                             child: CircularProgressIndicator(),

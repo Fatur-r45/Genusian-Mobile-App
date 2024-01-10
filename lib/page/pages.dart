@@ -2,7 +2,7 @@ export 'auth/login.dart';
 export 'main_page.dart';
 export 'auth/register.dart';
 export 'pengalman/pengalman.dart';
-export 'setting.dart';
+export 'profile/profile_setting.dart';
 export 'pendidikan/pendidikan.dart';
 export 'sertifikat/sertifikat.dart';
 export 'pengalman/creatPengalaman.dart';

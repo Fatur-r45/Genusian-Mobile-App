@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:genusian_smart_mobile_app/url/base_url.dart';
 
 @immutable
 class Mahasiswa {
@@ -20,7 +21,7 @@ class Mahasiswa {
   static Future<List<Mahasiswa>>? getAllMahasiswa() async {
     List<Mahasiswa> allMahasiswa = [];
     try {
-      var response = await Dio().get('http://localhost:5000/mahasiswa');
+      var response = await Dio().get('${BaseUrl.url}/mahasiswa');
       List data = ((response.data) as Map<String, dynamic>)["data"];
 
       for (var data in data) {

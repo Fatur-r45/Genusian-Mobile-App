@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:genusian_smart_mobile_app/url/base_url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/sertitifikat.dart';
@@ -7,7 +8,7 @@ class SertifikatServices {
   static Future<List<SertifikatModel>> getSertifikat(int nim) async {
     List<SertifikatModel> sertifikat = [];
     try {
-      var response = await Dio().get("http://localhost:5000/sertifikat/$nim");
+      var response = await Dio().get("${BaseUrl.url}/sertifikat/$nim");
       List data = ((response.data) as Map<String, dynamic>)["data"];
       for (var d in data) {
         sertifikat.add(SertifikatModel(
@@ -45,8 +46,7 @@ class SertifikatServices {
       },
     );
     try {
-      Response response = await Dio().post(
-          "http://localhost:5000/sertifikat/$nim",
+      Response response = await Dio().post("${BaseUrl.url}/sertifikat/$nim",
           data: formData,
           options: Options(contentType: Headers.multipartFormDataContentType),
           onSendProgress: (int sent, int total) {
@@ -83,8 +83,7 @@ class SertifikatServices {
       },
     );
     try {
-      Response response = await Dio().put(
-          "http://localhost:5000/sertifikat/$id",
+      Response response = await Dio().put("${BaseUrl.url}/sertifikat/$id",
           data: formData,
           options: Options(contentType: Headers.multipartFormDataContentType),
           onSendProgress: (int sent, int total) {
@@ -102,7 +101,7 @@ class SertifikatServices {
 
   static Future<void> deletSertifikat(int id) async {
     try {
-      await Dio().delete("http://localhost:5000/sertifikat/$id");
+      await Dio().delete("${BaseUrl.url}/sertifikat/$id");
     } catch (_) {}
   }
 }

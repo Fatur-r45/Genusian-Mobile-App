@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:genusian_smart_mobile_app/model/pendidikan_model.dart';
 import 'package:genusian_smart_mobile_app/model/pengalaman.dart';
 import 'package:genusian_smart_mobile_app/model/sertitifikat.dart';
+import 'package:genusian_smart_mobile_app/url/base_url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/get_all_data_from_mahasiswa.dart';
@@ -10,8 +11,7 @@ import '../model/mahasiswa.dart';
 class MahasiswaServices {
   static Future<Mahasiswa?> getMahasiswa(int nim) async {
     try {
-      var response =
-          await Dio().get("http://localhost:5000/mahasiswa/nim/$nim");
+      var response = await Dio().get("${BaseUrl.url}/mahasiswa/nim/$nim");
       var data = response.data["data"];
       if (response.statusCode == 200) {
         return Mahasiswa(
@@ -63,8 +63,8 @@ class MahasiswaServices {
   static Future<List<AllDataMahasiswa>?> getMahasiswaBySearch(
       String input) async {
     List<AllDataMahasiswa> mahasiswa = [];
-    var response = await Dio()
-        .get('http://localhost:5000/mahasiswa/search?keyword=$input');
+    var response =
+        await Dio().get('${BaseUrl.url}/mahasiswa/search?keyword=$input');
     List data = ((response.data) as Map<String, dynamic>)["data"];
 
     for (var data in data) {
@@ -132,8 +132,7 @@ class MahasiswaServices {
     SharedPreferences pref = await SharedPreferences.getInstance();
     int? nim = pref.getInt("nim");
     try {
-      var response =
-          await Dio().put("http://localhost:5000/mahasiswa/$nim", data: {
+      var response = await Dio().put("${BaseUrl.url}/mahasiswa/$nim", data: {
         "nama": nama,
         "jurusan": jurusan,
         "tempat_lahir": tempatLahir,
@@ -159,7 +158,7 @@ class MahasiswaServices {
       //     await Dio().put("http://localhost:5000/mahasiswa/$nim", data: {
       //   "tentang_saya": aboutMe,
       // });
-      await Dio().put("http://localhost:5000/mahasiswa/$nim", data: {
+      await Dio().put("${BaseUrl.url}/mahasiswa/$nim", data: {
         "tentang_saya": aboutMe,
       });
     } on DioException catch (e) {

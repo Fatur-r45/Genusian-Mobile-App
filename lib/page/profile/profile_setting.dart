@@ -7,10 +7,10 @@ import 'package:genusian_smart_mobile_app/model/mahasiswa.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../bloc/mahasiswa/mahasiswa_bloc.dart';
-import '../bloc/mahasiswa/mahasiswa_state.dart';
-import '../cubit/bool.dart';
-import '../cubit/incermentBottomNav.dart';
+import '../../bloc/mahasiswa/mahasiswa_bloc.dart';
+import '../../bloc/mahasiswa/mahasiswa_state.dart';
+import '../../cubit/bool.dart';
+import '../../cubit/incermentBottomNav.dart';
 
 class Setting extends StatelessWidget {
   const Setting({super.key});
